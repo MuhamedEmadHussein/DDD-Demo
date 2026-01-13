@@ -1,4 +1,4 @@
-# Professional Laravel DDD Demo 🚀
+# Laravel DDD Demo 🚀
 
 Welcome to the **Domain-Driven Design (DDD) in Laravel** demonstration. This project showcases how to structure a large-scale Laravel application using DDD principles to separate business logic from technical infrastructure.
 
