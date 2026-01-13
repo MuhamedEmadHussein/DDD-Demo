@@ -44,7 +44,7 @@
         @endif
     </div>
 
-    <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+    {{-- <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
         <div class="card">
             <h3>Domain-Driven Design Info</h3>
             <p style="color: var(--text-muted); line-height: 1.6;">
@@ -60,6 +60,6 @@
                 <li><strong>Presentation:</strong> Controllers & Views</li>
             </ul>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
