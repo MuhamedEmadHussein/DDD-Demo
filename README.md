@@ -1,6 +1,8 @@
 # Laravel DDD Demo 🚀
 
 Welcome to the **Domain-Driven Design (DDD) in Laravel** demonstration. This project showcases how to structure a large-scale Laravel application using DDD principles to separate business logic from technical infrastructure.
+- structuring your code around the business domain rather than technical details. The core idea is to let business rules and language guide the design, making your software easier to maintain, evolve, and understand.
+In Laravel, DDD can be implemented using directories and services to mirror your domain.
 
 ## 🏗️ The Architecture: DDD vs Traditional Laravel
 
@@ -42,21 +44,29 @@ app/
 ## 💎 Core DDD Concepts Explained
 
 ### 1. Entities & Value Objects
-- **Entity**: Has a unique identity (e.g., an Order with a UUID). Even if two orders have the same products, they are different.
-- **Value Object**: No identity, defined by its attributes. `Price` is a value object. $50 USD is $50 USD. If you change the amount, it's a new Value Object.
+- **Entity**: Has a unique identity (e.g., an Order with a UUID). Even if two orders have the same products, they are different. encapsulate both data and behavior. Unlike traditional Laravel models (Eloquent), which are often just data carriers, entities own business rules.
+  
+- **Value Object**: No identity, defined by its attributes. `Price` is a value object. $50 USD is $50 USD. If you change the amount, it's a new Value Object. encapsulate domain logic, e.g., currency validation, calculations (immutable).
 
 ### 2. Aggregates & Aggregate Roots
-An **Aggregate** is a cluster of associated objects. The **Order** is the **Aggregate Root**. Every change to order items MUST go through the Order entity to ensure business rules (invariants) are maintained.
+An **Aggregate** is a cluster of associated objects. The **Order** is the **Aggregate Root**. Every change to order items MUST go through the Order entity to ensure business rules (invariants) are maintained. treated as a single unit of consistency . ex: An Order is an aggregate root that manages OrderItems
 
 ### 3. Repositories
 Repositories are not just for "clean queries". They are a contract. The Domain says: *"I need to save an Order, I don't care if it's MySQL, MongoDB, or an API."* The Implementation lives in the Infrastructure layer.
+ex: map Order aggregate to Eloquent model
 
 ### 4. Application Services
+Orchestrates domain objects, infrastructure, and events.
+orchestration, no rules.
 These services handle the "workflow". For "Place Order", the service:
 1. Validates inputs.
 2. Uses Domain Factories/Entities to create objects.
 3. Calls the Repository to save.
 4. Dispatches Events.
+
+### 4. Domain Services
+These services Contain business logic not tied to a single entity ex: Order -> calculateTotal.
+core business rules.
 
 ---
 
